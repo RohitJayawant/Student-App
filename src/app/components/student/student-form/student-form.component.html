@@ -1,0 +1,28 @@
+<p>Student Entry Form</p>
+
+<div class="form-div">
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()" novalidate>        
+    <mat-form-field appearance="outline" [color]="primary" class="form-field-div">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="John" formControlName="name" required>
+        <mat-error>Name should only contain alpabets</mat-error>
+    </mat-form-field>    
+    <mat-form-field appearance="outline" [color]="primary" class="form-field-div">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" placeholder="Ex. 22" formControlName="age" min="20" max="35" required>        
+        <mat-error>Min age: 20, Max age: 35</mat-error>
+    </mat-form-field>    
+    <mat-form-field appearance="outline" [color]="primary" class="form-field-div">
+        <mat-label>Friends</mat-label>
+        <input matInput type="number" placeholder="Ex. 10" formControlName="friends" min="0" max="100" required>        
+        <mat-error>Min friends: 0, Max friends: 100</mat-error>
+    </mat-form-field>    
+    <mat-form-field appearance="outline" [color]="primary" class="form-field-div">
+        <mat-label>Weight</mat-label>
+        <input matInput type="number" placeholder="Ex. 130" formControlName="weight" min="112" max="190" required> 
+        <span matSuffix>lbs</span>       
+        <mat-error>Min weight: 112, Max weight: 150</mat-error>
+    </mat-form-field>     
+    <button mat-raised-button color="primary">Add</button>    
+</form>
+</div>

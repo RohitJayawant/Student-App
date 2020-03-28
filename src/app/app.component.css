@@ -1,0 +1,26 @@
+.main{
+    display: flex;
+    flex-direction: column; 
+    min-height: 97vh;
+  }
+  
+  .toolbar {   
+    padding: 10px;  
+  }
+  
+  .maincontent{  
+    padding-top:10px;
+    width: 100%;
+    flex: 1; 
+    display: flex;
+    flex-wrap: wrap;      
+  }
+
+  .element-div{
+    width: 98%;
+    margin: 10px;        
+  }
+    
+  @media (max-width: 600px){
+    .maincontent {padding-top: 5px;}
+  }
