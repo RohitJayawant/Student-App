@@ -41,7 +41,7 @@ export class StudentGraphComponent implements OnInit {
   ageData=[];
   weightData=[]; 
   
-  
+  //d3 chart arrays
   studentfriendsdata=[];
   ageweightdata=[];
 
@@ -56,10 +56,11 @@ export class StudentGraphComponent implements OnInit {
 
     this.students$.subscribe(x=>
       {
-        if(x.length != this.studentArray.length){
+        if(x.length != this.studentArray.length && x.length > 0){
           this.refreshFlag = true;        
       }  
       
+      //if data has changed refresh the charts.
       if(this.refreshFlag){
         //refresh the graph
         this.clearArrays();        
@@ -72,14 +73,17 @@ export class StudentGraphComponent implements OnInit {
           this.studentfriendsdata.push([student.name, student.friends]);
           this.ageweightdata.push({ age: student.age, weight: student.weight});
         }); 
-        this.createBarChart('Student-Friends data display', this.nameData, this.friendsData); 
-        this.createLineChart('Age-weight data display', this.ageData, this.weightData); 
-        this.createD3BarChart();
-        this.createD3LineChart();
+        if(x.length > 0){
+          this.createBarChart('Student-Friends data display', this.nameData, this.friendsData); 
+          this.createLineChart('Age-weight data display', this.ageData, this.weightData); 
+          this.createD3BarChart();
+          this.createD3LineChart();
+        }
       }
     });    
   }
 
+  //Chart.js chart creation
   //create bar chart
   createBarChart(label: string, labelsArray: any[], dataArray: any[]){
     var ctx = document.getElementById('barChart');
@@ -153,21 +157,7 @@ export class StudentGraphComponent implements OnInit {
   });
   }
 
-  //reset the graph to reflect new data
-  clearArrays(){
-    if (this.Chart != undefined || this.Chart !=null) {
-      this.Chart.destroy();
-    }
-
-    d3.selectAll("svg").remove();
-     
-    this.studentArray.length = 0;    
-    this.nameData.length = 0;
-    this.friendsData.length = 0;
-    this.weightData.length = 0;
-    this.ageData.length = 0;
-  }
-
+  //D3 Chart creation
   //create D3 bar chart
   createD3BarChart() {
     let element = document.getElementById("barchart");
@@ -279,11 +269,13 @@ export class StudentGraphComponent implements OnInit {
         .attr('class', 'axis axis-y')
         .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
         .call(d3.axisLeft(this.yScale));
-              
-        var line = d3.line<DataType>()   
-      .x((d) => { return this.xScale(d.age)})   
-      .y((d) => { return this.yScale(d.weight)})   
+         
+      //Create line
+      var line = d3.line<DataType>()   
+        .x((d) => { return this.xScale(d.age)})   
+        .y((d) => { return this.yScale(d.weight)})   
       
+      //Max and Min for x and y axis
       var x = d3.scaleTime().rangeRound([0, this.width]);
       var y = d3.scaleLinear().rangeRound([this.height, 0]);
       x.domain([0, d3.max(this.ageweightdata, function(d) { return d.age; })]);
@@ -296,6 +288,21 @@ export class StudentGraphComponent implements OnInit {
       .attr("stroke-linecap", "round")
       .attr("stroke-width", 1.5)
       .attr("d", line);      
+  }
+
+  //reset the graph to reflect new data
+  clearArrays(){
+    if (this.Chart != undefined || this.Chart !=null) {
+      this.Chart.destroy();
+    }
+
+    d3.selectAll("svg").remove();
+     
+    this.studentArray.length = 0;    
+    this.nameData.length = 0;
+    this.friendsData.length = 0;
+    this.weightData.length = 0;
+    this.ageData.length = 0;
   }
 }
  

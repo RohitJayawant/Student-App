@@ -1,8 +1,15 @@
 <p>Student data graph</p>
-Charts using Chart.js <br/>
-<div><canvas id="barChart" width="700" height="100"></canvas></div><br/>
-<div><canvas id="lineChart" width="700" height="100"></canvas></div>
+
+<div *ngIf="(studentsLoaded$ | async)">  
+    <div *ngIf="(students$ | async) ?.length == 0">
+        No data for generating graphs.
+    </div>
+</div>
 
 Charts using D3<br/>
 <div class="d3-chart" id="barchart"></div><br/>
 <div class="d3-chart" id="linechart"></div>
+<hr/>
+Charts using Chart.js <br/>
+<div><canvas id="barChart" width="700" height="100"></canvas></div><br/>
+<div><canvas id="lineChart" width="700" height="100"></canvas></div>
