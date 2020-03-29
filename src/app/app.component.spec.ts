@@ -1,13 +1,32 @@
 import { TestBed, async } from '@angular/core/testing';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
+import { MaterialModule } from './material';
+
+//project components
 import { AppComponent } from './app.component';
+import { StudentModule } from './components/student/student.module';
+import { StudentFormComponent } from './components/student/student-form/student-form.component';
+import { StudentGraphComponent } from './components/student/student-graph/student-graph.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent        
       ],
+      imports:[
+        MaterialModule,
+        StudentModule
+      ]      
     }).compileComponents();
+
+
+    TestBed.overrideModule(BrowserDynamicTestingModule, {
+      set: {
+        entryComponents: [StudentFormComponent, StudentGraphComponent]
+      }
+    });
+
   }));
 
   it('should create the app', () => {
@@ -16,16 +35,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'student-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('student-app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('student-app app is running!');
-  });
 });

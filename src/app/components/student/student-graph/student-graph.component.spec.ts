@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StudentGraphComponent } from './student-graph.component';
 
-describe('StudentGraphComponent', () => {
+xdescribe('StudentGraphComponent', () => {
   let component: StudentGraphComponent;
   let fixture: ComponentFixture<StudentGraphComponent>;
 
