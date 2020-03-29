@@ -11,7 +11,7 @@ import { StudentGraphComponent } from '../app/components/student/student-graph/s
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = null;
+  displayString = null;
 
   constructor(private injector : Injector, private domSanitizer: DomSanitizer){}
 
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
    
     //insert the element into UI
     //by pass angular sanitation as it is a trusted HTML input.
-    this.title = this.domSanitizer.bypassSecurityTrustHtml("<app-student-form></app-student-form><hr/><app-student-graph></app-student-graph>");
+    this.displayString = this.domSanitizer.bypassSecurityTrustHtml("<app-student-form></app-student-form><hr/><app-student-graph></app-student-graph>");
   }
 
 }
