@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { StudentService } from './student.service';
 import { Student } from '../models/student.model';
 
+import { Observable, of, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 describe('StudentService', () => {  
   beforeEach(() => TestBed.configureTestingModule({
     imports:[ HttpClientModule ]   
@@ -58,12 +61,18 @@ describe('StudentService', () => {
 
   it('save student function should return error if passed record is null or name is null', () => {
     const service: StudentService = TestBed.get(StudentService);
-
+    let errorObject : any;
     service.saveStudents(null)
-    .subscribe(      
-      err => { expect(err).toBe(false) },
+    .subscribe(  
+      next => {  },    
+      err => { errorObject= err; },
       () => { /*completed */ }
     );
+        
+    const mockObservable = new Observable<boolean>();       
+
+    expect(errorObject).toBeTruthy();
+    expect(errorObject).toEqual(mockObservable);
   });
 
   it('save student function should return true if record saved successfully',() =>{
