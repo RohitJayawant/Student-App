@@ -15,8 +15,8 @@ exports.config = {
   capabilities: {
     browserName: 'chrome'
   },
-  directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  directConnect: true,  
+  baseUrl: 'http://localhost:4200/webpack-dev-server/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

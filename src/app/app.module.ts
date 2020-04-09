@@ -14,8 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    StudentFormComponent, 
-    StudentGraphComponent   
+    //StudentFormComponent, 
+    //StudentGraphComponent   
   ],
   imports: [
     //angular and material modules
