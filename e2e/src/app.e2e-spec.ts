@@ -1,7 +1,7 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('Student-App E2E test cases', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -11,6 +11,11 @@ describe('workspace-project App', () => {
   it('should display welcome message', () => {
     page.navigateTo();
     expect(page.getTitleText()).toEqual('Secureworks coding sample using Angular Elements');
+  });
+
+  it('should show student entry form',() =>{
+    page.navigateTo();
+    expect(page.getStudentFormTitle()).toEqual('Student Entry Form');
   });
 
   afterEach(async () => {

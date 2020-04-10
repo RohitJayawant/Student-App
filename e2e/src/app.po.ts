@@ -8,4 +8,8 @@ export class AppPage {
   getTitleText() {
     return element(by.css('.main .toolbar')).getText() as Promise<string>;
   }
+
+  getStudentFormTitle(){
+    return element(by.css('app-student-form p')).getText() as Promise<string>;
+  }
 }
